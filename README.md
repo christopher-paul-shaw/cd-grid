@@ -1,2 +1,2 @@
-# cd-grid
+# CS-grid
 SCSS Grid
