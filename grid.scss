@@ -1,0 +1,80 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.row {
+  width: 100%; 
+  margin: auto;
+  max-width: 900px;
+  display: grid;
+}
+
+.row-full {
+  width: 100%; 
+  margin: auto;
+  display: grid;
+}
+
+.table-row {
+  border-top:  1px dotted #efefef;
+  padding: 0px !important;
+}
+
+.table-head {
+  padding:  0px;
+  background: #efefef;
+}
+
+.table-head * {
+  font-weight: bold;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+$breakPoints : (
+  'xxl': 18000px,
+  'xl': 1400px,
+  'lg': 800px,
+  'md': 400px,
+  'sm': 200px
+);
+
+@mixin grid_columns($columns, $breakpoint) {
+  $split: 800;
+  $cols: '';
+  @for $i from 1 through $columns {
+  
+   $cols: "#{$cols} 1fr";
+   @if ($breakpoint < $split) {
+     $cols: 'auto';
+    }
+    .columns-#{$i} {
+      grid-template-columns: #{$cols};
+    }
+
+    .columns-#{$i} * {
+      padding: 8px;
+    }
+  }
+}
+
+@each $k , $v in $breakPoints {
+  @media (max-width:#{$v}) {
+    @include grid_columns(12,$v);  
+  }
+}
+  
+.icon-content {
+    grid-template-columns: 10% 90%;
+}
+
+nav {
+  background: #444;
+}
+
+.u-text-center {
+  text-align: center; 
+}
